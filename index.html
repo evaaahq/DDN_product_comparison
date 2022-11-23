@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Software Product Comparison</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
       td>img {
@@ -44,19 +44,83 @@
             </td>
           </tr>
           <tr>
-            <th>Product Price</th>
-            <td id="price1">N/A</td>
-            <td id="price2">N/A</td>
-          </tr>
-          <tr>
             <th>Product Description</th>
             <td id="desc1">N/A</td>
             <td id="desc2">N/A</td>
           </tr>
           <tr>
-            <th>Product Benefits</th>
+            <th>Product Price</th>
+            <td id="price1">N/A</td>
+            <td id="price2">N/A</td>
+          </tr>
+          <tr>
+            <th>Main Benefits</th>
             <td id="benefits1">N/A</td>
             <td id="benefits2">N/A</td>
+          </tr>
+          <tr class="table-light">
+            <th colspan="3" style="text-align:center;">File Support</th>
+          </tr>
+          <tr>
+            <th>General file support</th>
+            <td id="file_support1">N/A</td>
+            <td id="file_support2">N/A</td>
+          </tr>
+          <tr>
+            <th>Open geomap/background aerial mapping images</th>
+            <td id="geomap_support1">N/A</td>
+            <td id="geomap_support2">N/A</td>
+          </tr>
+          <tr>
+            <th>Add Xref DGN/DWG into drawing</th>
+            <td id="xref_support1">N/A</td>
+            <td id="xref_support2">N/A</td>
+          </tr>
+          <tr>
+            <th>Insert PDF</th>
+            <td id="pdf_support1">N/A</td>
+            <td id="pdf_support2">N/A</td>
+          </tr>
+          <tr class="table-light">
+            <th colspan="3" style="text-align:center;">Drawing and Design</th>
+          </tr>
+          <tr>
+            <th>Coordinate System</th>
+            <td id="coordinate1">N/A</td>
+            <td id="coordinate2">N/A</td>
+          </tr>
+          <tr>
+            <th>Add dimensions into drawing</th>
+            <td id="dimensions1">N/A</td>
+            <td id="dimensions2">N/A</td>
+          </tr>
+          <tr>
+            <th>Block Attributes</th>
+            <td id="blockatt1">N/A</td>
+            <td id="blockatt2">N/A</td>
+          </tr>
+          <tr>
+            <th>Layering and Interface</th>
+            <td id="layer1">N/A</td>
+            <td id="layer2">N/A</td>
+          </tr>
+          <tr class="table-light">
+            <th colspan="3" style="text-align:center;">Other Considerations</th>
+          </tr>
+          <tr>
+            <th>Note on Text</th>
+            <td id="note_on_text1">N/A</td>
+            <td id="note_on_text2">N/A</td>
+          </tr>
+          <tr>
+            <th>Performance/Speed</th>
+            <td id="performance1">N/A</td>
+            <td id="performance2">N/A</td>
+          </tr>
+          <tr>
+            <th>When to use</th>
+            <td id="use_case1">N/A</td>
+            <td id="use_case2">N/A</td>
           </tr>
         </table>
       </div>
@@ -81,31 +145,61 @@
 
   function item1(a){
     document.getElementById("img1").src = products[a].image //image
+    document.getElementById("desc1").innerHTML = products[a].description //description
     let price_list = "" //price
     for(var c=0; c<products[a].price.length; c++){
-      price_list += products[a].price[c] + "</br>";
+      price_list += products[a].price[c] + "<br />";
     }
     document.getElementById("price1").innerHTML = price_list
-    document.getElementById("desc1").innerHTML = products[a].description//description
     let list = "" //benefits
     for(var b=0; b<products[a].benefits.length; b++){
-      list += "&#10004;" + products[a].benefits[b] + "</br>";
+      list += "&#10004;" + products[a].benefits[b] + "<br />";
     }
-    document.getElementById("benefits1").innerHTML = list 
+    document.getElementById("benefits1").innerHTML = list
+    let file_list = "" //file
+    for(var f=0; f<products[a].file_compatibility.length; f++){
+      file_list += products[a].file_compatibility[f] + "<br /><br />";
+    }
+    document.getElementById("file_support1").innerHTML = file_list
+    document.getElementById("geomap_support1").innerHTML = products[a].open_geomap //geomap
+    document.getElementById("xref_support1").innerHTML = products[a].add_xref //xref
+    document.getElementById("pdf_support1").innerHTML = products[a].insert_pdf //pdf
+    document.getElementById("coordinate1").innerHTML = products[a].coordinate_sys //coordinate
+    document.getElementById("dimensions1").innerHTML = products[a].dimensions //dimensions
+    document.getElementById("blockatt1").innerHTML = products[a].block_att //block attributes
+    document.getElementById("layer1").innerHTML = products[a].layer_interface //layering and interface
+    document.getElementById("note_on_text1").innerHTML = products[a].note_on_text //Note on Text
+    document.getElementById("performance1").innerHTML = products[a].performance //Performance and Speed
+    document.getElementById("use_case1").innerHTML = products[a].use_cases //When to use
   }
 
   function item2(a){
-    document.getElementById("img2").src = products[a].image
+    document.getElementById("img2").src = products[a].image //image
+    document.getElementById("desc2").innerHTML = products[a].description //description
     let price_list = "" //price
     for(var c=0; c<products[a].price.length; c++){
-      price_list += products[a].price[c] + "</br>";
+      price_list += products[a].price[c] + "<br />";
     }
     document.getElementById("price2").innerHTML = price_list
-    document.getElementById("desc2").innerHTML = products[a].description
-    let list = ""
+    let list = "" //benefits
     for(var b=0; b<products[a].benefits.length; b++){
-      list += "&#10004;" + products[a].benefits[b] + "</br>";
+      list += "&#10004;" + products[a].benefits[b] + "<br />";
     }
     document.getElementById("benefits2").innerHTML = list 
+    let file_list = "" //file
+    for(var f=0; f<products[a].file_compatibility.length; f++){
+      file_list += products[a].file_compatibility[f] + "<br /><br />";
+    }
+    document.getElementById("file_support2").innerHTML = file_list
+    document.getElementById("geomap_support2").innerHTML = products[a].open_geomap //geomap
+    document.getElementById("xref_support2").innerHTML = products[a].add_xref //xref
+    document.getElementById("pdf_support2").innerHTML = products[a].insert_pdf //pdf
+    document.getElementById("coordinate2").innerHTML = products[a].coordinate_sys //coordinate
+    document.getElementById("dimensions2").innerHTML = products[a].dimensions //dimensions
+    document.getElementById("blockatt2").innerHTML = products[a].block_att //block attributes
+    document.getElementById("layer2").innerHTML = products[a].layer_interface //layering and interface
+    document.getElementById("note_on_text2").innerHTML = products[a].note_on_text //Note on Text
+    document.getElementById("performance2").innerHTML = products[a].performance //Performance and Speed
+    document.getElementById("use_case2").innerHTML = products[a].use_cases //When to use
   }
 </script>
